@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My CRUD in NodeJS</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  <style type="text/css">
+      .titulo{
+        text-align: center;
+        font-size: 3rem;
+      }
+      .corpo{
+        background-color: #D9FFE3;
+        text-align: center;
+      }
+      h1{
+        font-size: 20px;
+        margin: 30px;
+      }
+      form{
+        text-align: right;
+        margin-right: 550px;
+      }
+      .novo{
+        font-size: 2rem;
+        margin-left: 30px;
+      }
+      .nome, .cpf, .tel, .esc{
+        margin-left: 30px;
+      }
+      button{
+        margin-left: 30px;
+      }
+  </style>
+  <script type="text/javascript">
+    function verifica(e){
+      if(e.which != 8 && e.which != 0 (e.which < 48 || e.which > 57)){
+        return false;
+      }
+    }
+    $(document).ready(function(){
+      $("#cpf").keypress(verifica);
+    });
+
+    function formataCpf(evt){
+      vr = (navigator.appName == 'Netscape') ?evt.target.value : evt.srcElement.value;
+        if(vr.length == 3) vr = vr+".";
+        if(vr.length == 7) vr = vr+".";
+        if(vr.length == 11) vr = vr+"-";
+      return vr;
+    }
+
+     $(document).ready(function(){
+      $("#telefone").keypress(verifica);
+    });
+
+    function formataTel(evt){
+      vr = (navigator.appName == 'Netscape') ?evt.target.value : evt.srcElement.value;
+        if(vr.length == 0) vr = vr+"(";
+        if(vr.length == 3) vr = vr+")";
+        if(vr.length == 9) vr = vr+"-";
+      return vr;
+    }
+  </script>
+</head>
+<body class="corpo">
+
+<h1 class="titulo">Editar Registro</h1>
+  <% data.forEach(function(details) { %>
+    <form action="/edit/<%= details._id %>" method="POST">
+      <label class="nome" for="nome">Nome:</label>
+      <input type="text" value="<%= details.name %>" name="name"><br>
+      <label class="cpf" for="cpf">CPF:</label>
+      <input type="text" value="<%= details.cpf %>" name="cpf" onkeypress="this.value = formataCpf(event)"><br>
+      <label class="tel" for="telefone">Telefone:</label>
+      <input type="text" value="<%= details.telefone %>" name="telefone" onkeypress="this.value = formataTel(event)"><br>
+      <label class="esc" for="escolaridade">Escolaridade:</label>
+      <input type="text" value="<%= details.escolaridade %>" name="escolaridade">
+      <br>
+      <button><a href="/show">Voltar</a></button>
+      <button type="submit">Editar</button>
+    </form>
+  <% }) %>
+</body>
+</html>
