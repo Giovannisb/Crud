@@ -7,7 +7,7 @@ No front-end, utilizei JavaScript.
 O arquivo principal é o server.js. Ele é responsável pela estrutura de back-end da aplicação, onde está instanciado o banco
 de dados e os comandos de manipulação dos dados. É nele também que será iniciado o servidor local
 
-Utilizei o Mongodb no banco de dados.
+Utilizei o Mongodb no banco de dados. Criei local para desenvolvero banco de dados usando hostname 'localhost' e a porta '27017'. 
 
 O index.ejs é o HTML da página principal, onde será inserido os dados pelo usuário e submetido ao banco.
 Depois de submetido os dados, a aplicação é direcionada a página show(show.ejs) que irá mostrar todos os dados inseridos pelo usuário.
